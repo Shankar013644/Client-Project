@@ -1,0 +1,17 @@
+import random
+from collections import defaultdict
+text="i love coding i love ai i love python"
+words=text.split()
+model=defaultdict(list)
+for i in range(len(words)-1):
+    model[words[i]].append(words[i+1])
+def generate(word):
+    next_words=model[word]
+    freq={}
+    for w in next_words:
+        freq[w]=freq.get(w,0)+1
+    choices=list(freq.keys())
+    weights=list(freq.values())
+    return random.choices(choices,weights=weights)[0]
+print(generate("love"))
+  
